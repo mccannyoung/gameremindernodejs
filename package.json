@@ -1,0 +1,15 @@
+{
+  "name": "discordreminderbot",
+  "version": "1.0.0",
+  "description": "Reminder for the weekly d20 game",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RAMY",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "long": "^4.0.0"
+  }
+}
