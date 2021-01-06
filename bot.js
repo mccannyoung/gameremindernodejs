@@ -20,18 +20,18 @@ client.on('ready', ()=>{
     dayofWeek = weekday[now.getDay()];
     var channel2Notify = process.env.gamechan;
     const kuma  = '<:monkey_face:795697280605749268>';
+    // If it's tuesday, give a 24 hour notice 
     if(dayofWeek === weekday[2])
     {
  
         client.channels.fetch(channel2Notify).then((channel) =>{
-            channel.send(`@everyone ${kuma} Tuesday test`);
+            channel.send(`@everyone T-Minus ~24 hours until game time! ${kuma} `);
         }
         );
-    } else if (dayofWeek == weekday[3])
+    } else if (dayofWeek === weekday[3])
     {
         var ppl2notify = process.env.userlist;
-        console.log('user list');
-        console.log(ppl2notify);
+   
         if(ppl2notify.length>1) {
             var pplList = ppl2notify.split(',');
 
@@ -43,13 +43,13 @@ client.on('ready', ()=>{
             );
             });
         }
-        console.log(`going to notify ${channel2Notify}`);
+   
         client.channels.fetch(channel2Notify).then((channel) =>{
-            channel.send(`@everyone ${kuma} `);
+            channel.send(`@everyone ${kuma} GAME TIME!`);
         }
         );
     }
-    console.log(`today ${nowDay} is ${dayofWeek}`);
+   
 }
 
 
