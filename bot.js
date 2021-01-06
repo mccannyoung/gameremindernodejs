@@ -1,6 +1,5 @@
 require('dotenv').config();
 const Discord = require("discord.js");
-const {prefix} = require('./config.json');
 
 const client = new Discord.Client({disableEveryone: false});
 
@@ -16,8 +15,13 @@ client.on('ready', ()=>{
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
     var now = new Date();
-    var nowDay = now.getDay();
+
+    console.log(`${now}`);
+    
     dayofWeek = weekday[now.getDay()];
+
+    console.log(`${dayofWeek}`);
+    
     var channel2Notify = process.env.gamechan;
     const kuma  = '<:monkey_face:795697280605749268>';
     // If it's tuesday, give a 24 hour notice 
@@ -28,7 +32,8 @@ client.on('ready', ()=>{
             channel.send(`@everyone T-Minus ~24 hours until game time! ${kuma} `);
         }
         );
-    } else if (dayofWeek === weekday[3])
+    } 
+    else if (dayofWeek === weekday[3])
     {
         var ppl2notify = process.env.userlist;
    
