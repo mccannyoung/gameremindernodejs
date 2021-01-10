@@ -18,14 +18,14 @@ client.on('ready', ()=>{
 
     console.log(`${now}`);
     
-    dayofWeek = weekday[now.getDay()];
+    var dayOfWeek = weekday[now.getDay()];
 
-    console.log(`${dayofWeek}`);
+    //console.log(`${dayOfWeek}`);
     
     var channel2Notify = process.env.gamechan;
     const kuma  = '<:monkey_face:795697280605749268>';
     // If it's tuesday, give a 24 hour notice 
-    if(dayofWeek === weekday[2])
+    if(dayOfWeek === weekday[2])
     {
  
         client.channels.fetch(channel2Notify).then((channel) =>{
@@ -33,7 +33,7 @@ client.on('ready', ()=>{
         }
         );
     } 
-    else if (dayofWeek === weekday[3])
+    else if (dayOfWeek === weekday[3])
     {
         var ppl2notify = process.env.userlist;
    
