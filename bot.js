@@ -50,11 +50,12 @@ client.on('ready', ()=>{
         }
    
         client.channels.fetch(channel2Notify).then((channel) =>{
-            channel.send(`@everyone ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`);
+            channel.send(`@everyone ${kuma} T-MINUS 15 MINUTES TIL GAME TIME!`);
         }
         );
+    } else {
+        client.destroy();
     }
-    client.destroy();
    
 }
 
