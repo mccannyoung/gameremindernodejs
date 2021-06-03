@@ -31,26 +31,31 @@ client.on('ready', ()=>{
         client.channels.fetch(channel2Notify).then((channel) =>{
             channel.send(`@everyone T-Minus ~24 hours until game time! ${kuma} `);
         }
-        );
+        ).then(()=>{
+            client.destroy();    
+        });
     } 
     else if (dayOfWeek === weekday[3])
     {
-        var ppl2notify = process.env.userlist;
-   
-        if(ppl2notify.length>1) {
-            var pplList = ppl2notify.split(',');
-
-            pplList.forEach(person =>{
-                console.log(`person : ${person}`);
-                client.users.fetch(person).then( (result) =>{
-                    result.send(`Game Day! ${kuma}`);
-                }
-            );
-            });
-        }
-   
         client.channels.fetch(channel2Notify).then((channel) =>{
-            channel.send(`@everyone ${kuma} T-MINUS 15 MINUTES TIL GAME TIME!`);
+            channel.send(`@everyone ${kuma} IT'S ALMOST GAME TIME!`);
+
+            var ppl2notify = process.env.userlist;
+   
+            if(ppl2notify.length>1) {
+                var pplList = ppl2notify.split(',');
+    
+                pplList.forEach(person =>{
+                    console.log(`person : ${person}`);
+                    client.users.fetch(person).then( (result) =>{
+                        result.send(`Game Day! ${kuma}`);
+                    }
+                );
+                });
+            }
+        }
+        ).then(()=> {
+        client.destroy();
         }
         );
     } else {
