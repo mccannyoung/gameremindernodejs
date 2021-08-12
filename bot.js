@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
     disableEveryone: false
 });
-
+var countdown = 0;
 client.on('ready', () => {
     client.user.setActivity("the clock", {
         type: 'WATCHING'
@@ -38,16 +38,15 @@ client.on('ready', () => {
             process.exit(0);
         });
     } else if (dayOfWeek === weekday[3]) {
-        console.log("it's Wednesday pulling userlist");
-        var ppl2notify = process.env.userlist;
         countdown = 1;
+        var ppl2notify = process.env.userlist;
+
         if (ppl2notify.length > 1) {
             var pplList = ppl2notify.split(',');
-            console.log("userlist "+pplList.toString());
+            //console.log("userlist "+pplList.toString());
             countdown = countdown + pplList.length;
             pplList.forEach(person => {
                 
-                console.log(`person : ${person}`);
                 client.users.fetch(person).then((result) => {
                     result.send(`Game Day! ${kuma}`).then(arewealldone());
                 });
@@ -55,8 +54,7 @@ client.on('ready', () => {
         }
 
         client.channels.fetch(channel2Notify).then((channel) => {
-            console.log("sending to channel");
-            console.log(channel2Notify);
+
             channel.send(`@everyone ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`).then(arewealldone());
         });
     } else {
@@ -68,8 +66,10 @@ client.on('ready', () => {
 });
 
 function arewealldone() {
+    console.log("the countdown is currently "+countdown);
     countdown = countdown - 1;
-    if (countdown == 0) {
+    if (countdown >= 0) {
+        console.log("I am exiting via function");
         client.destroy();
         process.exit(0);
     }
