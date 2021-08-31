@@ -4,12 +4,12 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
     disableEveryone: false
 });
-var countdown = 0;
+var countdown = 5;
 client.on('ready', () => {
     client.user.setActivity("the clock", {
         type: 'WATCHING'
     });
-    var countdown = 100;
+    
     var weekday = new Array(7);
     weekday[0] = "Sunday";
     weekday[1] = "Monday";
@@ -32,10 +32,10 @@ client.on('ready', () => {
     if (dayOfWeek === weekday[2]) {
 
         client.channels.fetch(channel2Notify).then((channel) => {
-            channel.send(`@everyone T-Minus ~24 hours until game time! ${kuma} `);
-        }).then(() => {
+            channel.send(`@everyone T-Minus ~24 hours until game time! ${kuma} `).then(() => {
             client.destroy();
             process.exit(0);
+        });
         });
     } else if (dayOfWeek === weekday[3]) {
         countdown = 1;
@@ -68,7 +68,7 @@ client.on('ready', () => {
 function arewealldone() {
     console.log("the countdown is currently "+countdown);
     countdown = countdown - 1;
-    if (countdown >= 0) {
+    if (countdown <= 0) {
         console.log("I am exiting via function");
         client.destroy();
         process.exit(0);
