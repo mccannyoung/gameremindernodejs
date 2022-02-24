@@ -28,8 +28,23 @@ client.on('ready', () => {
 
     var channel2Notify = process.env.gamechan;
     const kuma = '<:monkey_face:795697280605749268>';
-    // If it's tuesday, give a 24 hour notice 
-    if (dayOfWeek === weekday[2]) {
+    const bard = '🎶'
+    if (dayOfWeek === weekday[0]) {// If it's tuesday, give a 24 hour notice 
+
+        client.channels.fetch(channel2Notify).then((channel) => {
+            channel.send(`T-Minus ~24 hours until bard game time! ${bard}`).then(() => {
+            client.destroy();
+            process.exit(0);
+        });
+        });
+    } else if(dayOfWeek === weekday[1]) {
+        client.channels.fetch(channel2Notify).then((channel) => {
+            channel.send(`Bard game ~30 minutes! ${bard}`).then(() => {
+                client.destroy();
+                process.exit(0);
+            });
+        });    
+    } else if (dayOfWeek === weekday[2]) {// If it's tuesday, give a 24 hour notice 
 
         client.channels.fetch(channel2Notify).then((channel) => {
             channel.send(`T-Minus ~24 hours until game time! ${kuma} `).then(() => {
