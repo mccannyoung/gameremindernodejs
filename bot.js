@@ -48,7 +48,7 @@ client.on('ready', () => {
     if (dayOfWeek === weekday[2]) {// If it's tuesday, give a 24 hour notice 
 
         client.channels.fetch(channel2Notify).then((channel) => {
-            channel.send(`T-Minus ~24 hours until game time! ${kuma} `).then(() => {
+            channel.send(`@wednesday T-Minus ~24 hours until game time! ${kuma} `).then(() => {
             client.destroy();
             process.exit(0);
         });
