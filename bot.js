@@ -32,14 +32,14 @@ client.on('ready', () => {
     if (dayOfWeek === weekday[0]) {// If it's tuesday, give a 24 hour notice 
 
         client.channels.fetch(channel2Notify).then((channel) => {
-            channel.send(`@monday T-Minus ~24 hours until Monday game time! ${bard}`).then(() => {
+            channel.send(`<@&996187532536598638> T-Minus ~24 hours until Monday game time! ${bard}`).then(() => {
             client.destroy();
             process.exit(0);
         });
         });
     } else if(dayOfWeek === weekday[1]) {
         client.channels.fetch(channel2Notify).then((channel) => {
-            channel.send(`@monday Monday game ~30 minutes! ${bard}`).then(() => {
+            channel.send(`<@&996187532536598638> Monday game ~30 minutes! ${bard}`).then(() => {
                 client.destroy();
                 process.exit(0);
             });
@@ -48,7 +48,7 @@ client.on('ready', () => {
     if (dayOfWeek === weekday[2]) {// If it's tuesday, give a 24 hour notice 
 
         client.channels.fetch(channel2Notify).then((channel) => {
-            channel.send(`@wednesday T-Minus ~24 hours until game time! ${kuma} `).then(() => {
+            channel.send(`<@&996187780956835870> T-Minus ~24 hours until game time! ${kuma} `).then(() => {
             client.destroy();
             process.exit(0);
         });
@@ -71,7 +71,7 @@ client.on('ready', () => {
 
         client.channels.fetch(channel2Notify).then((channel) => {
 
-            channel.send(`@wednesday ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`).then(arewealldone());
+            channel.send(`<@&996187780956835870> ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`).then(arewealldone());
         });
     } else {
         console.log('not a day to alert on');
