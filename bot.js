@@ -48,14 +48,18 @@ client.on('ready', () => {
     if (dayOfWeek === weekday[2]) {// If it's tuesday, give a 24 hour notice 
 
         client.channels.fetch(channel2Notify).then((channel) => {
-            channel.send(`<@&996187780956835870> T-Minus ~24 hours until game time! ${kuma} `).then(() => {
-            client.destroy();
-            process.exit(0);
-        });
+            try {
+                channel.send(`<@&996187780956835870> T-Minus ~24 hours until game time! ${kuma} `).then(() => {
+                client.destroy();
+                process.exit(0);
+                });
+            } catch(error){
+                console.error(error)
+            }
         });
     } else if (dayOfWeek === weekday[3]) {
-        countdown = 1;
-        
+
+        try {
         client.channels.fetch(channel2Notify).then((channel) => {
 
             channel.send(`<@&996187780956835870> ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`).then(() => {
@@ -63,6 +67,9 @@ client.on('ready', () => {
                 process.exit(0);
             });
         });
+    } catch(error){
+        console.error(error)
+    }
     } else {
         console.log('not a day to alert on');
         client.destroy();
@@ -71,15 +78,6 @@ client.on('ready', () => {
 
 });
 
-function arewealldone() {
-    console.log("the countdown is currently "+countdown);
-    countdown = countdown - 1;
-    if (countdown <= 0) {
-        console.log("I am exiting via function");
-        client.destroy();
-        process.exit(0);
-    }
-}
 
 client.on('message', function (message) {
     if (message.author.bot) return;
