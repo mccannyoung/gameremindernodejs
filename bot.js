@@ -55,23 +55,13 @@ client.on('ready', () => {
         });
     } else if (dayOfWeek === weekday[3]) {
         countdown = 1;
-        var ppl2notify = process.env.userlist;
-
-        if (false && ppl2notify.length > 1) {
-            var pplList = ppl2notify.split(',');
-            //console.log("userlist "+pplList.toString());
-            countdown = countdown + pplList.length;
-            pplList.forEach(person => {
-                
-                client.users.fetch(person).then((result) => {
-                    result.send(`Game Day! ${kuma}`).then(arewealldone());
-                });
-            });
-        }
-
+        
         client.channels.fetch(channel2Notify).then((channel) => {
 
-            channel.send(`<@&996187780956835870> ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`).then(arewealldone());
+            channel.send(`<@&996187780956835870> ${kuma} T-MINUS 30 MINUTES TIL GAME TIME!`).then(() => {
+                client.destroy();
+                process.exit(0);
+            });
         });
     } else {
         console.log('not a day to alert on');
